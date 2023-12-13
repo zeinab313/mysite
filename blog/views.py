@@ -11,8 +11,7 @@ def blog_view(request):
     return render(request,'blog/blog-home.html',context)
 
 def blog_single(request,pid):
-    # posts = Post.objects.filter(published_date__lte=timezone.now(), status=1)
-    post=get_object_or_404(Post,pk=pid,status=1)
+    post=get_object_or_404(Post,pk=pid,published_date__lte=timezone.now(),status=1)
     #برای اینکه با هر بار بازدید پست موردنظر یک عدد به تعداد بازدید اضافه شود
     post.counted_views=post.counted_views+1
     post.save()
