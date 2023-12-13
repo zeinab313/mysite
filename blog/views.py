@@ -12,7 +12,7 @@ def blog_view(request):
     return render(request,'blog/blog-home.html',context)
 
 def blog_single(request,pid):
-    post=get_object_or_404(Post,pk=pid)
+    post=get_object_or_404(Post,pk=pid,status=1)
     #برای اینکه با هر بار بازدید پست موردنظر یک عدد به تعداد بازدید اضافه شود
     post.counted_views=post.counted_views+1
     post.save()
