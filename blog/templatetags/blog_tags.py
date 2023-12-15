@@ -20,10 +20,7 @@ def postcategories():
         cat_dict[name]=posts.filter(category=name).count
     return {'categories':cat_dict}
 
-@register.inclusion_tag('website/latestposts.html')
-def latestposts_index(arg=6):
-    posts = Post.objects.filter(status=1).order_by('published_date')[:arg]
-    return {'posts':posts}
+
 
 
 

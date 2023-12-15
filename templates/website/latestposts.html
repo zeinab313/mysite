@@ -1,5 +1,5 @@
 {%load static%}
-{%load blog_tags%}
+{%load website_tags%}
 <div class="container">
     <div class="row d-flex justify-content-center">
         <div class="menu-content pb-60 col-lg-9">
@@ -18,19 +18,19 @@
                 </div>
                 <div class="details">
                     <div class="tags">
+    
                         <ul>
+                            {%for cat in post.category.all %}
                             <li>
-                                <!-- این دو موردرو نمی دونستم باید به کدوم بخش وارد شوند برا همین لینک ندادم  -->
-                                <a href="#">Travel</a>
+							<a href="{%url 'blog:category' cat_name=cat.name%}">{{cat.name}}</a>{% if not forloop.last %},{%endif%}
                             </li>
-                            <li>
-                                <a href="#">Life Style</a>
-                            </li>											
+                            {%endfor%}
+                           											
                         </ul>
                     </div>
-                    <a href="#"><h4 class="title">{{post.title}}</h4></a>
+                    <a href="{% url 'blog:single' pid=post.id %}"><h4 class="title">{{post.title}}</h4></a>
                     <p>
-                        {{post.content}}
+                        {{post.content|truncatewords:10}}
                     </p>
                     <h6 class="date">{{post.published_date|date:"d M Y"}}</h6>
                 </div>	
