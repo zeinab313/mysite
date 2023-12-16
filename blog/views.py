@@ -26,9 +26,14 @@ def blog_single(request,pid):
     post=get_object_or_404(Post,pk=pid,published_date__lte=timezone.now(),status=1)
     post.counted_views=post.counted_views+1
     post.save()
-    # post_next=post.objects.filter(id__gt=post.id).order_by('id').first()
-    # post_prev= post.objects.filter(id__lt=post.id).order_by('-id').first()
-    contex={'post':post}
+
+    posts=Post.objects.filter(status=1)
+    post_next=posts.filter(id__gt=post.id).order_by('id').first()
+    print(post_next)
+    post_prev= posts.filter(id__lt=post.id).order_by('-id').first()
+    print(post_prev)
+    contex={'post':post, 'post_next':post_next,'post_prev':post_prev}
+    # contex={'post':post}
     return render(request,'blog/blog-single.html',contex)
 
 def blog_category(request,cat_name):
