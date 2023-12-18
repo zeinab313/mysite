@@ -62,27 +62,28 @@
 						
 						<div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
 							<div class="thumb">
-								<a href="#"><img class="img-fluid" src="{%static 'img/blog/prev.jpg' %}" alt=""></a>
+								<a href="{% url 'blog:single' pid=post_prev.id %}"><img class="img-fluid" src="{{ post_prev.image.url }}" alt=""></a>
 							</div>
 							<div class="arrow">
 								<a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
 							</div>
 							<div class="detials">
 								<p>Prev Post</p>
-								<a href="#"><h4>{{posts.post_prev}}</h4></a>
+								<a href="{% url 'blog:single' pid=post_prev.id %}"><h4>{{post_prev.title}}</h4></a>
+								
 							</div>
 						</div>
 						<!-- next post -->
 						<div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
 							<div class="detials">
 								<p>Next Post</p>
-								<a href="#"><h4>Telescopes 101</h4></a>
+								<a href="{% url 'blog:single' pid=post_next.id %}"><h4>{{post_next.title}}</h4></a>
 							</div>
 							<div class="arrow">
 								<a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
 							</div>
 							<div class="thumb">
-								<a href="#"><img class="img-fluid" src="{%static 'img/blog/next.jpg' %}" alt=""></a>
+								<a href="{% url 'blog:single' pid=post_next.id %}"><img class="img-fluid" src="{{ post_next.image.url }}" alt=""></a>
 							</div>										
 						</div>									
 					</div>
