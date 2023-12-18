@@ -37,11 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #یک اپی که ایجاد کردیم را اضافه کردیم
+    'django.contrib.humanize',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+
+    # یک اپی که ایجاد کردیم را اضافه کردیم
     'website.apps.WebsiteConfig',
     'blog'
 ]
-
+SITE_ID = 2
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -119,10 +123,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT= BASE_DIR/'static'
+STATIC_ROOT = BASE_DIR/'static'
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT= BASE_DIR/'media' 
+MEDIA_ROOT = BASE_DIR/'media'
 
 STATICFILES_DIRS = [
     BASE_DIR / "statics",
