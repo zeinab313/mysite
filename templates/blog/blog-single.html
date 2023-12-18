@@ -59,7 +59,7 @@
 				<div class="navigation-area">
 					<div class="row">
 						<!-- prev post -->
-						
+						{%if post_prev%}
 						<div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
 							<div class="thumb">
 								<a href="{% url 'blog:single' pid=post_prev.id %}"><img class="img-fluid" src="{{ post_prev.image.url }}" alt=""></a>
@@ -69,11 +69,22 @@
 							</div>
 							<div class="detials">
 								<p>Prev Post</p>
-								<a href="{% url 'blog:single' pid=post_prev.id %}"><h4>{{post_prev.title}}</h4></a>
 								
+								<a href="{% url 'blog:single' pid=post_prev.id %}"><h4>{{post_prev.title}}</h4></a>
+				
 							</div>
 						</div>
+						{%else%}
+						<div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+							<div class="detials">
+								<p>Prev Post</p>
+								<h4>not pervios post</h4>
+							</div>
+						</div>
+						{%endif%}
+
 						<!-- next post -->
+						{%if post_next%}
 						<div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
 							<div class="detials">
 								<p>Next Post</p>
@@ -85,7 +96,15 @@
 							<div class="thumb">
 								<a href="{% url 'blog:single' pid=post_next.id %}"><img class="img-fluid" src="{{ post_next.image.url }}" alt=""></a>
 							</div>										
-						</div>									
+						</div>
+						{%else%}
+						<div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+							<div class="detials">
+								<p>Next Post</p>
+								<h4>not next post</h4>
+							</div>							
+						</div>	
+						{%endif%}									
 					</div>
 				</div>
 				<div class="comments-area">
