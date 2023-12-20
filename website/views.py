@@ -12,11 +12,17 @@ def about_view(request):
 
 def contact_view(request):
     if request.method=='POST':
+        Contact.name='anonymous'
+        print( Contact.name)
         form= ContacForm(request.POST)
         if form.is_valid():
-            # Contact.name= form.cleaned_data['name']
-            # Contact.name=='anonymous'
+            Contact.name= form.cleaned_data['name']
+            print( Contact.name)
+            Contact.name='anonymous'
+            name=Contact.name
+            print( name)
             form.save()
+            print(form)
             messages.add_message(request,messages.SUCCESS,'save information seccessfully')
         else:
             messages.add_message(request,messages.ERROR,'save information not seccessfully')
