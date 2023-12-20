@@ -19,7 +19,7 @@ def contact_view(request):
             Contact.name= form.cleaned_data['name']
             print( Contact.name)
             Contact.name='anonymous'
-            name=Contact.name
+            # name=Contact.name.get(name=='anonymous')
             print( name)
             form.save()
             print(form)
