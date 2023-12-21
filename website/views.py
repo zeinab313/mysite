@@ -14,9 +14,9 @@ def contact_view(request):
     if request.method=='POST':
         form= ContactForm(request.POST)
         if form.is_valid():
-            form = form.save(commit=False)
-            form.name = 'anonymous'
-            form.save()
+            contact = form.save(commit=False)
+            contact.name = 'anonymous'
+            contact.save()
             messages.add_message(request,messages.SUCCESS,'save information seccessfully')
         else:
             messages.add_message(request,messages.ERROR,'save information not seccessfully')
