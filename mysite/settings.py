@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'robots',
     'debug_toolbar',
+    'taggit',
+    
 
     # یک اپی که ایجاد کردیم را اضافه کردیم
     'website.apps.WebsiteConfig',

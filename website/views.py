@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponsePermanentRedirect
 from website.models import Contact
-from website.forms import ContacForm,NameForm,NewsletterForm
+from website.forms import ContactForm,NameForm,NewsletterForm
 from django.contrib import messages
 
 def index_view(request):
@@ -12,22 +12,16 @@ def about_view(request):
 
 def contact_view(request):
     if request.method=='POST':
-        Contact.name='anonymous'
-        print( Contact.name)
-        form= ContacForm(request.POST)
+        form= ContactForm(request.POST)
         if form.is_valid():
-            Contact.name= form.cleaned_data['name']
-            print( Contact.name)
-            Contact.name='anonymous'
-            # name=Contact.name.get(name=='anonymous')
-            print( name)
+            form = form.save(commit=False)
+            form.name = 'anonymous'
             form.save()
-            print(form)
             messages.add_message(request,messages.SUCCESS,'save information seccessfully')
         else:
             messages.add_message(request,messages.ERROR,'save information not seccessfully')
-    form=ContacForm()
-    return render(request,'website/contact.html',{'form':form})
+    form=ContactForm()
+    return render(request,'website/contact.html',{'form': form})
 
 def newsletter_view(request):
     if request.method=='POST':

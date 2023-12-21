@@ -7,7 +7,7 @@ class NameForm(forms.Form):
     subject = forms.CharField(max_length=255)
     message =forms.CharField(widget=forms.Textarea)
 
-class ContacForm(forms.ModelForm):
+class ContactForm(forms.ModelForm):
 
     class Meta:
         model=Contact
