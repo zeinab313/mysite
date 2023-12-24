@@ -1,7 +1,10 @@
 from django.shortcuts import render,get_object_or_404
-from blog.models import Post
+from blog.models import Post,Comment
 from django.utils import timezone
 from django.core.paginator import PageNotAnInteger,Paginator,EmptyPage
+from blog.forms import CommentForm
+from django.contrib import messages
+
 
 # Create your views here.
 def blog_view(request,**kwargs):
@@ -25,14 +28,23 @@ def blog_view(request,**kwargs):
     return render(request,'blog/blog-home.html',context)
 
 def blog_single(request,pid):
+    if request.method=='POST':
+        form=CommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request,messages.SUCCESS,'save comment seccessfully')
+        else:
+            messages.add_message(request,messages.ERROR,'dont save comment')
+
     post=get_object_or_404(Post,pk=pid,published_date__lte=timezone.now(),status=1)
     post.counted_views=post.counted_views+1
     post.save()
-
     posts=Post.objects.filter(published_date__lte=timezone.now(),status=1)
     post_next=posts.filter(id__gt=post.id).order_by('id').first()
     post_prev= posts.filter(id__lt=post.id).order_by('-id').first()
-    contex={'post':post, 'post_next':post_next,'post_prev':post_prev}
+    comments=Comment.objects.filter(post=post.id,approved=True)
+    form=CommentForm()
+    contex={'post':post, 'post_next':post_next,'post_prev':post_prev,'comments':comments,'form':form}
     # contex={'post':post}
     return render(request,'blog/blog-single.html',contex)
 
