@@ -42,8 +42,8 @@
 							<li><a href="#">logged in as  {{request.user.username}}</a></li>
 							<li><a href="{%url 'accounts:logout'%}">log out</a></li>
 							{%else%}
-                            <li><a href="{%url 'accounts:login'%}">login</a></li>
-                            <li><a href="#">sign in</a></li>
+                            <li><a href="{%url 'accounts:login'%}">log in</a></li>
+                            <li><a href="{%url 'accounts:signup'%}">sign up</a></li>
 							{%endif%}
                           </ul>			
                       </div>
