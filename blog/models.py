@@ -19,6 +19,7 @@ class Post(models.Model):
     content = models.TextField()
     tags = TaggableManager()
     category = models.ManyToManyField(Category)
+    login_require=models.BooleanField(default=False)
     counted_views = models.IntegerField(default=0)
     status = models.BooleanField(default=False)
     published_date = models.DateTimeField(null=True)
