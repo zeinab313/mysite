@@ -52,7 +52,8 @@ INSTALLED_APPS = [
 
     # یک اپی که ایجاد کردیم را اضافه کردیم
     'website.apps.WebsiteConfig',
-    'blog'
+    'blog',
+    'accounts',
 ]
 
 #sites framwork
