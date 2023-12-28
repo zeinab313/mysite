@@ -52,6 +52,7 @@ def blog_single(request,pid):
         return render(request,'blog/blog-single.html',contex)
     else:
         return HttpResponseRedirect(reverse('accounts:login'))
+    
 
     
 

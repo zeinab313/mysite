@@ -38,7 +38,7 @@
                   <div class="row align-items-center">
                       <div class="col-lg-6 col-sm-6 col-6 header-top-left">
                           <ul>
-							{%if request.user.is_authenticated%}
+							{%if request.user.is_authenticated %}
 							<li><a href="#">logged in as  {{request.user.username}}</a></li>
 							<li><a href="{%url 'accounts:logout'%}">log out</a></li>
 							{%else%}
@@ -67,19 +67,13 @@
                     <ul class="nav-menu">
                       <li><a href="{% url 'website:index' %}">Home</a></li>
                       <li><a href="{% url 'website:about'%}">About</a></li>
-					  <li><a href="{%url 'blog:index' %}">Blog</a></li>
-                     
-                      </li>	
-                     			          					          		           
+					  <li><a href="{%url 'blog:index' %}">Blog</a></li>       					          		           
                       <li><a href="{% url 'website:contact' %}">Contact</a></li>
                     </ul>
                   </nav><!-- #nav-menu-container -->					      		  
                 </div>
             </div>
-        </header><!-- #header -->
-        {% block content %} 
-   <!-- #پیام جهت ثبت شدن یا نشدن اطلاعات در فرم -->
-        {% endblock %}
+		<!-- #پیام جهت ثبت شدن یا نشدن اطلاعات در فرم -->
 		{% if messages %}
 		{% for message in messages %}
 		<div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
@@ -104,6 +98,11 @@
 		</div>
 		{% endif %}
 		<!-- #پایان کد پیام -->
+        </header><!-- #header -->
+        {% block content %} 
+   
+        {% endblock %}
+
         <!-- start footer Area -->		
 			<footer class="footer-area section-gap">
 				<div class="container">

@@ -9,7 +9,6 @@
     <!-- <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.3/components/logins/login-10/assets/css/login-10.css"> -->
 </head>
 <body>
-              
 <!-- Login 10 - Bootstrap Brain Component -->
 <section class="bg-light py-3 py-md-5 py-xl-8">
     <div class="container">
@@ -21,7 +20,34 @@
                 <!-- <img src="./assets/img/bsb-logo.svg" alt="BootstrapBrain Logo" width="175" height="57"> -->
               </a>
             </div>
-            <h4 class="text-center mb-4">Welcome back you've been missed!</h4>
+            <!-- #پیام جهت صحت اطلاعات ورودی -->
+            <h6 class="text-center mb-4">
+              {% if messages %}
+              {% for message in messages %}
+              <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
+              {% endfor %}
+              {% endif %}
+          
+              {% if form.errors %}
+              <div class="alert alert-error">
+                <h4>Please fix the following errors</h4>
+                <ul>
+                  {% for field in form %}
+                  {% if field.errors %}
+                  {% for error in field.errors %}
+                  <li><a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a></li>
+                  {% endfor %}
+                  {% endif %}
+                  {% endfor %}
+                </ul>
+                {% if form.non_field_errors %}
+                {{ form.non_field_errors }}
+                {% endif %}
+              </div>
+              {% endif %}
+          </h6>
+            <!-- #پایان پیام -->        
+            <h4 class="text-center mb-4">Welcome to page log in</h4>
             <div class="text-center">
               <!-- <a href="#!" class="btn bsb-btn-2xl btn-primary">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
@@ -40,7 +66,8 @@
                   <div class="col-12">
                     <div class="form-floating mb-3">
                       <input type="text" class="form-control" name="username" placeholder="username" required autofocus>
-                      <label for="email" class="form-label">Username</label>
+                      <!-- <input type="email" class="form-control" name="email" value="" placeholder="Email" required autofocus> -->
+                      <label for="email" class="form-label">Username or Email</label>
                     </div>
                   </div>
                   <div class="col-12">
@@ -67,8 +94,8 @@
             </div>
           </div>
           <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center mt-4">
-            <a href="#!" class="link-secondary text-decoration-none">Create new account</a>
-            <a href="#!" class="link-secondary text-decoration-none">Forgot password</a>
+            <a href="{%url 'accounts:signup'%}" class="link-secondary text-decoration-none">Create new account</a>
+            <a href="{% url 'accounts:password_reset'%}" class="link-secondary text-decoration-none">Forgot password</a>
           </div>
         </div>
       </div>
@@ -76,30 +103,3 @@
   </section>
 </body>
 </html>
-
-
-
-<!-- <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Login by Matt05 | Codepen</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
-</head>
-
-<body style="background: #214a80;">
-    <div class="login-dark" style="height: 695px;">
-        <form>
-            <h2 class="sr-only">Login Form</h2>
-            <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
-            <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-            <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block">Log In</button></div><a class="forgot" href="#">Forgot your email or password?</a></form>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html> -->
