@@ -38,13 +38,14 @@ def blog_single(request,pid):
         else:
             messages.add_message(request,messages.ERROR,'dont save comment')
 
-    post=get_object_or_404(Post,pk=pid,published_date__lte=timezone.now(),status=1)
+   
+    posts=Post.objects.filter(published_date__lte=timezone.now(),status=1)
+    post=get_object_or_404(posts,pk=pid,published_date__lte=timezone.now(),status=1)
     post.counted_views=post.counted_views+1
     post.save()
-    posts=Post.objects.filter(published_date__lte=timezone.now(),status=1)
     post_next=posts.filter(id__gt=post.id).order_by('id').first()
     post_prev= posts.filter(id__lt=post.id).order_by('-id').first()
-    if not post.login_require:
+    if post.login_require:
         comments=Comment.objects.filter(post=post.id,approved=True)
         form=CommentForm()
         contex={'post':post, 'post_next':post_next,'post_prev':post_prev,'comments':comments,'form':form}

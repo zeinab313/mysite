@@ -189,6 +189,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_URL = 'login'
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -196,13 +197,15 @@ INTERNAL_IPS = [
 
 X_FRAME_OPTIONS='SAMEORIGIN'
 
-EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'zeinab313@gmail.com' #your email-id
-EMAIL_HOST_PASSWORD = '13681368' #your password
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'zeinab313@gmail.com' #your email-id
+# EMAIL_HOST_PASSWORD = '' #your password
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
+
+
 
 
 

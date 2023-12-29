@@ -13,8 +13,12 @@ from django.contrib.auth.views import (PasswordChangeView,
                                        PasswordResetConfirmView,
                                        PasswordResetDoneView,
                                        PasswordResetView)
+
 from django.urls import reverse_lazy
 from .forms import *
+
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Create your views here.
 
