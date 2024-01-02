@@ -65,21 +65,6 @@ def signup_view(request):
           return redirect('/')
 
 
-# def password_reset(request):
-#      return render(request,'accounts/password_reset.html')
-
-# def password_reset_done(request):
-#      return render(request,'accounts/password_reset_done.html')
-
-# def password_reset_email(request):
-#      return render(request,'accounts/password_reset_email.html')
-
-# def password_reset_confirm(request):
-#      return render(request,'accounts/password_reset_confirm.html')
-
-# def password_reset_complete(request):
-#      return render(request,'accounts/password_reset_complete.html')
-     
 
 # Customized password change and reset views
 
@@ -90,15 +75,15 @@ def signup_view(request):
 
 class PasswordReset(PasswordResetView):
     template_name="accounts/password_reset_form.html"
-    success_url=reverse_lazy("account:password_reset_done")
+    success_url=reverse_lazy("accounts:password_reset_done")
 
 class PasswordResetDone(PasswordResetDoneView):
     template_name="accounts/password_reset_done.html"
-    success_url=reverse_lazy("account:password_reset_confirm")
+    success_url=reverse_lazy("accounts:password_reset_confirm")
 
 class PasswordResetConfirm(PasswordResetConfirmView):
     template_name="accounts/password_reset_confirm.html"
-    success_url=reverse_lazy("account:password_reset_complete")
+    success_url=reverse_lazy("accounts:password_reset_complete")
 
 class PasswordResetComplete(PasswordResetCompleteView):
     template_name="accounts/password_reset_complete.html"
